@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>西北无声</title>
+    <!--<link rel="stylesheet" type="text/css" href="css/base.css">-->
+    <style></style>
+</head>
+<body>
+
+<!--画布-->
+<div id="flappybird">
+
+</div>
+
+<script src="js/Fly.js"></script>
+<script src="js/sky.js"></script>
+<script src="js/land.js"></script>
+<script src="js/pipe.js"></script>
+<script src="js/game.js"></script>
+<script src="js/bird.js"></script>
+<!--画布控制-->
+<script>
+
+    var g = Fly.factory('Game','flappybird');
+    g.startGame();
+
+</script>
+</body>
+</html>
