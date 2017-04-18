@@ -12,6 +12,7 @@
         this.imgW = this.imgPipeTop.width;
         this.imgH = this.imgPipeTop.height;
         this.x = params.x || 0 ;
+        this.restore_x = params.restore_x || 0;
         this.topY = params.topY || 0;
         this.bottomY = params.bottomY || 0;
         this.speed = -0.15;

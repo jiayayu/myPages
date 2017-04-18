@@ -35,6 +35,9 @@
         ctx.font = '15px  "微软雅黑"';
         ctx.textAlign = 'right';
        
+    },
+    Time.prototype.restore = function () {
+        this.beginTime = +new Date;
     };
 
     // 暴露给 全局对象 Fly

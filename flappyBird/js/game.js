@@ -13,8 +13,10 @@
         this.eleLists = [];
         this.isStart = true;
         this.cover = document.getElementById('flappybird').getElementsByClassName('cover')[0];
+        this.imgList = null;
         this.time = null;
         this.bird = null;
+
     }
     Game.prototype = {
         constructor : Game,
@@ -22,6 +24,7 @@
         startGame : function () {
             var _this = this;
             Fly.loadImages(this.imgSrc, function (imgList) {
+                _this.imgList = imgList;
                 _this.initEles(imgList);
                 _this.draw(imgList);
                 _this.bindEvent();
@@ -63,7 +66,8 @@
                     ctx : ctx,
                     imgPipeTop : imgList.pipe2,
                     imgPipeBottom : imgList.pipe1,
-                    x : z * imgList.pipe1.width * 3 + 350
+                    x : z * imgList.pipe1.width * 3 + 350,
+                    restore_x : z * imgList.pipe1.width * 3 + 350
                 });
                 this.eleLists.push(pipe);
             }
@@ -126,6 +130,18 @@
 
             })();
         },
+        restore : function (_this) {
+            
+            _this.bird.restore();
+            _this.time.restore();
+            for(var i=2; i<=7 ;i++){
+                _this.eleLists[i].x = _this.eleLists[i].restore_x;
+            }
+            _this.isStart = true;
+            Fly.cover(_this.cover,false);
+            _this.lastFrameTime = +new Date;
+            _this.draw(_this.imgList);
+        },
 
         bindEvent : function () {
             var _this = this;
@@ -134,14 +150,9 @@
                 _this.bird.jump();
             });
             _this.cover.addEventListener('click',function () {
-                // Fly.cover(_this.cover,false);
-                // _this.isStart = true;
-                // console.log(111);
-                // console.log(_this.isStart);
-                // _this.ctx.clearRect(0,0,cv.width,cv.height);
-                // _this.ctx.beginPath();
-                // _this.startGame();
-                location.reload();      
+            
+                _this.restore(_this);
+                 
             })
         }
     };

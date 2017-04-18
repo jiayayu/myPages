@@ -14,8 +14,8 @@
         this.a = params.a || 0.0005;
         this.v = 0;
         this.t = 0;
-        this.x = params.x || 100;
-        this.y = params.y || 100;
+        this.x = params.x || 200;
+        this.y = params.y || 200;
         this.curAngle = 0;
         this.maxAngle = 45;
         this.maxSpeed = .5;
@@ -30,7 +30,7 @@
             var imgW = this.imgW;
             var imgH = this.imgH;
 
-
+            // console.log(this.x+"---"+this.y+"---"+this.v);
             //控制小鸟加速下落
             this.v = this.v + this.a*t;
             this.y = this.y + this.v*t + 1/2*this.a*t*t;
@@ -58,6 +58,13 @@
 
         jump : function () {
             this.v = -.3;
+        },
+
+        restore : function () {
+            this.v = 0;
+            this.x = 200;
+            this.y = 200;
+            this.curAngle = 0;
         },
 
         //添加订阅方法（就是发布消息时其他对象中需要执行的方法）
