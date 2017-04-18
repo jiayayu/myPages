@@ -7,8 +7,12 @@
     	body{
     		margin: 0;
     		background-color: #ccc;
+            -webkit-user-select:none;
+            -moz-user-select:none;
+            -ms-user-select:none;
+            user-select:none;
     	}
-    	h3{
+	   h3{
     		text-align: center;
     	}
     	#flappybird{
@@ -47,8 +51,8 @@
 <!--画布-->
 <div id="flappybird">
 	<div class="cover" >
-        <p>GAME OVER</p>
-		<p>PLAY AGAIN</p>
+        <p draggable='false'>GAME OVER</p>
+		<p draggable='false'>PLAY AGAIN</p>
 	</div>
     <div class="time">
         
@@ -68,13 +72,16 @@
     var g = Fly.factory('Game','flappybird');
     g.startGame();
 
-    var title = document.getElementsByClassName('title')[0];
-    title.onselectstart=function(){return false;}
+    // var title = document.getElementsByClassName('title')[0];
+    // title.onselectstart=function(){return false;}
+    // title.draggable = false;
 
     // var p1 = document.getElementsByTagName('p')[0];
     // var p2 = document.getElementsByTagName('p')[1];
     // p1.onselectstart=function(){return false;}
+    // p1.draggable = false;
     // p2.onselectstart=function(){return false;}
+    // p2.draggable = false;
 
 
 
