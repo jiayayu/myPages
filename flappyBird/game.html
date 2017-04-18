@@ -2,15 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>西北无声</title>
-    <!--<link rel="stylesheet" type="text/css" href="css/base.css">-->
-    <style></style>
+    <title>flappybird</title>
+    <style>
+    	body{
+    		margin: 0;
+    		background-color: #ccc;
+    	}
+    	h3{
+    		text-align: center;
+    	}
+    	#flappybird{
+    		width: 800px;
+    		height: 600px;
+    		margin: 0 auto;
+    		position: relative;
+    	}
+		.cover{
+			width: 800px;
+			height: 600px;
+			position: absolute;
+			top: 0;
+			left:0;
+			background-color: rgba(255,255,255,.5);
+			text-align: center;
+			display: none;
+            cursor: pointer;
+		}
+		.cover p{
+			
+		}
+
+        .cover p:nth-child(1){
+            font-size: 60px;
+            margin-top: 200px;
+        }
+        .cover p:nth-child(2){
+            font-size: 40px;
+            color: #f00;
+        }
+    </style>
 </head>
 <body>
-
+<h3 class='title' >flappyBird</h3>
 <!--画布-->
 <div id="flappybird">
-
+	<div class="cover" >
+        <p>GAME OVER</p>
+		<p>PLAY AGAIN</p>
+	</div>
+    <div class="time">
+        
+    </div>
 </div>
 
 <script src="js/Fly.js"></script>
@@ -19,11 +61,22 @@
 <script src="js/pipe.js"></script>
 <script src="js/game.js"></script>
 <script src="js/bird.js"></script>
+<script src="js/time.js"></script>
 <!--画布控制-->
 <script>
 
     var g = Fly.factory('Game','flappybird');
     g.startGame();
+
+    var title = document.getElementsByClassName('title')[0];
+    title.onselectstart=function(){return false;}
+
+    // var p1 = document.getElementsByTagName('p')[0];
+    // var p2 = document.getElementsByTagName('p')[1];
+    // p1.onselectstart=function(){return false;}
+    // p2.onselectstart=function(){return false;}
+
+
 
 </script>
 </body>

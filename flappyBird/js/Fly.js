@@ -40,6 +40,18 @@
         return cv.getContext('2d');
     };
 
+    FlyObj.cover = function (cover,boolean) {
+        
+        if(boolean){
+            //覆盖  true
+            cover.style.display = 'block';
+        }else{
+            //取消覆盖   false
+            cover.style.display = 'none';
+        }
+    }
+
+
     // 工厂函数：
     // 用来实现创建对象，有了该函数以后，只要是创建对象，
     // 就调用这个 工厂函数！
@@ -55,6 +67,8 @@
                 return new Fly.Land( option );
             case 'Pipe':
                 return new Fly.Pipe( option );
+            case 'Time':
+                return new Fly.Time( option );
         }
     };
 

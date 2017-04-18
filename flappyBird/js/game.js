@@ -12,7 +12,8 @@
         this.imgSrc = ['birds', 'land', 'sky', 'pipe1', 'pipe2'];
         this.eleLists = [];
         this.isStart = true;
-
+        this.cover = document.getElementById('flappybird').getElementsByClassName('cover')[0];
+        this.time = null;
         this.bird = null;
     }
     Game.prototype = {
@@ -24,6 +25,7 @@
                 _this.initEles(imgList);
                 _this.draw(imgList);
                 _this.bindEvent();
+                Fly.cover(_this.cover,false);
             });
         },
 
@@ -33,6 +35,7 @@
 
         initEles : function (imgList) {
             var ctx = this.ctx;
+            var beginTime = +new Date;
             this.bird = Fly.factory('Bird',{
                 'img' : imgList.birds,
                 'ctx' : ctx,
@@ -40,6 +43,10 @@
                 'y' : 100
             });
 
+            this.time = Fly.factory('Time',{
+                beginTime:beginTime,
+                ctx:ctx
+            });
             //创建天空
             for (var i = 0; i < 2; i++) {
                 var sky = Fly.factory('Sky',{
@@ -94,6 +101,8 @@
                 ctx.clearRect(0,0,cv.width,cv.height);
                 ctx.beginPath();
 
+                
+
                 //渲染天空/陆地
                 _this.eleLists.forEach(function (ele) {
                     //这里的render方法是sky实例对象的render方法
@@ -103,11 +112,16 @@
                 //渲染小鸟
                 _this.bird.draw(_this.t);
 
+                //渲染时间
+                _this.time.render();
+
                 //小鸟碰撞检测
                 _this.bird.isDie();
 
                 if(_this.isStart){
                     window.requestAnimationFrame(render);
+                }else{
+                    Fly.cover(_this.cover,true);
                 }
 
             })();
@@ -118,6 +132,16 @@
             var cv = this.ctx.canvas;
             cv.addEventListener('click',function () {
                 _this.bird.jump();
+            });
+            _this.cover.addEventListener('click',function () {
+                // Fly.cover(_this.cover,false);
+                // _this.isStart = true;
+                // console.log(111);
+                // console.log(_this.isStart);
+                // _this.ctx.clearRect(0,0,cv.width,cv.height);
+                // _this.ctx.beginPath();
+                // _this.startGame();
+                location.reload();      
             })
         }
     };
